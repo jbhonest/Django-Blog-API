@@ -4,16 +4,26 @@ from django.contrib import admin
 from .models import Category, Post, Comment
 
 
+class PostInline(admin.StackedInline):
+    model = Post
+    extra = 1
+
+
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description')
+    list_display = ('id', 'title', 'description')
+    list_display_links = ('id', 'title')
+    search_fields = ('title', 'description')
+    inlines = (PostInline,)
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('title', 'category', 'created_at')
+    list_display = ('id', 'title', 'category')
+    list_display_links = ('id', 'title')
     list_filter = ('category',)
-    search_fields = ('title', 'content')
+    search_fields = ('title', 'content', 'category__title',
+                     'category__description')
 
 
 @admin.register(Comment)
