@@ -27,6 +27,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.filter(is_active=True).order_by('-pk')
     serializer_class = CommentSerializer
+    permission_classes = [permissions.IsAuthenticated]
     filter_backends = (DjangoFilterBackend,
                        filters.OrderingFilter, filters.SearchFilter,)
     filterset_fields = ('post', 'author')

@@ -15,7 +15,7 @@ This is a simple Django blog API built using Django and Django REST framework.
 Make sure you have Python, Django, and Django REST framework installed:
 
 ```bash
-pip install django djangorestframework
+pip install -r requirements.txt
 ```
 
 ### Installation

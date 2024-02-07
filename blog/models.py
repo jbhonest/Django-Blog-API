@@ -33,8 +33,9 @@ class Post(MyBaseModel):
 
 
 class Comment(MyBaseModel):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
-    author = models.CharField(max_length=255)
+    post = models.ForeignKey(
+        Post, on_delete=models.CASCADE, null=False, blank=False)
+    author = models.CharField(max_length=255, null=False, blank=False)
     text = models.TextField()
 
     def __str__(self):
