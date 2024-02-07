@@ -64,8 +64,11 @@ The API will be available at http://127.0.0.1:8000/api/.
     * Individual comment: **/api/comments/{comment_id}/**
 
 ## Django Admin
-
-Access the Django admin interface at http://127.0.0.1:8000/admin/ to manage categories, posts, and comments.
+First create an admin user:
+```bash
+python manage.py createsuperuser
+```
+Then access the Django admin interface at http://127.0.0.1:8000/admin/ to manage categories, posts, and comments.
 
 
 ---
