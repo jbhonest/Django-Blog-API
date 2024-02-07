@@ -20,7 +20,6 @@ class Category(MyBaseModel):
 
     class Meta:
         verbose_name_plural = 'Categories'
-        ordering = ('title',)
 
 
 class Post(MyBaseModel):
@@ -31,9 +30,6 @@ class Post(MyBaseModel):
 
     def __str__(self):
         return self.title
-
-    class Meta:
-        ordering = ('title',)
 
 
 class Comment(MyBaseModel):

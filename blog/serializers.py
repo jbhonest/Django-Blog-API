@@ -6,18 +6,16 @@ from .models import Post, Category, Comment
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Category
-        fields = '__all__'
+        fields = ('id', 'title', 'description')
 
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ('id', 'author', 'text', 'post')
 
 
 class PostSerializer(serializers.ModelSerializer):
-    comments = CommentSerializer(many=True, read_only=True)
-
     class Meta:
         model = Post
-        fields = '__all__'
+        fields = ('id', 'title', 'content', 'category')

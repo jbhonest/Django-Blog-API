@@ -1,34 +1,33 @@
 # blog/views.py
-from rest_framework import generics
+from rest_framework import viewsets, filters, permissions
+from django_filters.rest_framework import DjangoFilterBackend
 from .models import Post, Category, Comment
 from .serializers import PostSerializer, CategorySerializer, CommentSerializer
 
 
-class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-
-class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-
-
-class CategoryList(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
+class CategoryViewSet(viewsets.ModelViewSet):
     serializer_class = CategorySerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Category.objects.filter(is_active=True).order_by('-pk')
+    filter_backends = (DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter,)
+    search_fields = ('title', 'description')
 
 
-class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
+class PostViewSet(viewsets.ModelViewSet):
+    serializer_class = PostSerializer
+    permission_classes = [permissions.IsAuthenticated]
+    queryset = Post.objects.filter(is_active=True).order_by('-pk')
+    filter_backends = (DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter,)
+    filterset_fields = ('category',)
+    search_fields = ('title', 'content')
 
 
-class CommentList(generics.ListCreateAPIView):
-    queryset = Comment.objects.all()
+class CommentViewSet(viewsets.ModelViewSet):
+    queryset = Comment.objects.filter(is_active=True).order_by('-pk')
     serializer_class = CommentSerializer
-
-
-class CommentDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Comment.objects.all()
-    serializer_class = CommentSerializer
+    filter_backends = (DjangoFilterBackend,
+                       filters.OrderingFilter, filters.SearchFilter,)
+    filterset_fields = ('post', 'author')
+    search_fields = ('text', 'author')

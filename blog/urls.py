@@ -1,12 +1,20 @@
 # blog/urls.py
-from django.urls import path
-from .views import PostList, PostDetail, CategoryList, CategoryDetail, CommentList, CommentDetail
+from django.urls import path, include
+from rest_framework import routers
+from .views import PostViewSet, CategoryViewSet, CommentViewSet
+
+category_router = routers.DefaultRouter()
+category_router.register('', CategoryViewSet)
+
+post_router = routers.DefaultRouter()
+post_router.register('', PostViewSet)
+
+comment_router = routers.DefaultRouter()
+comment_router.register('', CommentViewSet)
 
 urlpatterns = [
-    path('posts/', PostList.as_view(), name='post-list'),
-    path('posts/<int:pk>/', PostDetail.as_view(), name='post-detail'),
-    path('categories/', CategoryList.as_view(), name='category-list'),
-    path('categories/<int:pk>/', CategoryDetail.as_view(), name='category-detail'),
-    path('comments/', CommentList.as_view(), name='comment-list'),
-    path('comments/<int:pk>/', CommentDetail.as_view(), name='comment-detail'),
+    path('categories/', include(category_router.urls)),
+    path('posts/', include(post_router.urls)),
+    path('comments/', include(comment_router.urls)),
+
 ]

@@ -24,7 +24,7 @@ pip install django djangorestframework
 ```bash
 git clone https://github.com/jbhonest/django-blog-api.git
 ```
-2. Rename sample_settings.py to local_settings.py
+2. In **myblogproject** folder rename sample_settings.py to local_settings.py
 3. Generate a SECRET_KEY and save it in local_settings.py
 
 
