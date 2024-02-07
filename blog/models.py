@@ -39,4 +39,4 @@ class Comment(MyBaseModel):
     text = models.TextField()
 
     def __str__(self):
-        return f'{self.author} - {self.text}'
+        return self.text

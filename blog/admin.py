@@ -30,7 +30,7 @@ class PostAdmin(admin.ModelAdmin):
     list_display = ('id', 'title', 'category', 'is_active',
                     'created_date', 'updated_date')
     list_display_links = ('id', 'title')
-    list_filter = ('category', 'is_active', 'created_date', 'updated_date')
+    list_filter = ('is_active', 'category', 'created_date', 'updated_date')
     list_editable = ('is_active',)
     search_fields = ('title', 'content', 'category__title',
                      'category__description')
@@ -41,7 +41,8 @@ class PostAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
     list_display = ('id', 'text', 'author', 'post', 'is_active',
                     'created_date', 'updated_date')
-    list_filter = ('post', 'is_active', 'author',
+    list_filter = ('is_active', 'post', 'author',
                    'created_date', 'updated_date')
+    list_display_links = ('id', 'text')
     list_editable = ('is_active',)
     search_fields = ('text',)

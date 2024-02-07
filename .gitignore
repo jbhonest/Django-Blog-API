@@ -1,3 +1,7 @@
 /venv
 local_settings.py
 db.sqlite3
+blog/__pycache__
+myblogproject/__pycache__
+
+
