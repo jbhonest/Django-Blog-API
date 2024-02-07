@@ -11,23 +11,28 @@ class PostInline(admin.StackedInline):
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description')
+    list_display = ('id', 'title', 'description', 'is_active',
+                    'created_date', 'updated_date')
     list_display_links = ('id', 'title')
+    list_filter = ('is_active', 'created_date', 'updated_date')
     search_fields = ('title', 'description')
     inlines = (PostInline,)
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'category')
+    list_display = ('id', 'title', 'category', 'is_active',
+                    'created_date', 'updated_date')
     list_display_links = ('id', 'title')
-    list_filter = ('category',)
+    list_filter = ('category', 'is_active', 'created_date', 'updated_date')
     search_fields = ('title', 'content', 'category__title',
                      'category__description')
 
 
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('post', 'text', 'created_at')
-    list_filter = ('post',)
+    list_display = ('post', 'text', 'is_active',
+                    'created_date', 'updated_date')
+    list_filter = ('post', 'is_active',
+                   'created_date', 'updated_date')
     search_fields = ('text',)
