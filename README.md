@@ -8,17 +8,7 @@ This is a simple Django blog API built using Django and Django REST framework.
 - **Posts**: Create, retrieve, update, and delete blog posts.
 - **Comments**: Users can add comments to blog posts.
 
-## Getting Started
-
-### Prerequisites
-
-Make sure you have the required packages installed:
-
-```bash
-pip install -r requirements.txt
-```
-
-### Installation
+## Installation
 
 1. Clone the repository:
 ```bash
@@ -34,13 +24,19 @@ git clone https://github.com/jbhonest/django-blog-api.git
 cd django-blog-api
 ```
 
-4. Apply migrations to set up the database:
+4. Install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+5. Apply migrations to set up the database:
 ```bash
 python manage.py migrate
 ```
 
 
-5. Run the development server:
+6. Run the development server:
 ```bash
 python manage.py runserver
 ```
