@@ -34,7 +34,7 @@ python manage.py migrate
 ```bash
 python manage.py runserver
 ```
-The API will be available at http://127.0.0.1:8000/api/.
+The API will be available at http://127.0.0.1:8000/api/
 
 ## API Endpoints
 * **Categories:** /api/categories/
